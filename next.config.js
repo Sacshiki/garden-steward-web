@@ -10,6 +10,6 @@ module.exports = withPlugins([[withSass], [withImages]], {
     return config;
   },
   env:{
-    STRAPI_URL:"http://localhost:1337"
+    STRAPI_URL:"https://knowledge.sacshiki.com"
   }
 });

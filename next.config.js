@@ -8,5 +8,8 @@ module.exports = withPlugins([[withSass], [withImages]], {
   webpack(config, options) {
     config.resolve.modules.push(path.resolve("./"));
     return config;
+  },
+  env:{
+    STRAPI_URL:"http://localhost:1337"
   }
 });

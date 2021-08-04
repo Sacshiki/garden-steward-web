@@ -10,13 +10,10 @@ import { makeStyles } from "@material-ui/core/styles";
 import Header from "components/Header/Header.js";
 import Footer from "components/Footer/Footer.js";
 
-
 import styles from "assets/jss/nextjs-material-kit/pages/landingPage.js";
 
 // Sections for this page
 import PrivacySection from "pages-sections/Misc-Sections/PrivacySection.js";
-
-const dashboardRoutes = [];
 
 const useStyles = makeStyles(styles);
 
@@ -27,7 +24,6 @@ export default function LandingPage(props) {
     <div>
       <Header
         color="transparent"
-        routes={dashboardRoutes}
         brand="Garden Steward"
         // rightLinks={<HeaderLinks />}
         fixed

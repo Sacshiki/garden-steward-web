@@ -26,6 +26,8 @@ export default function Footer(props) {
     [classes.a]: true,
     [classes.footerWhiteFont]: whiteFont
   });
+  const todaysDate = new Date()
+  const currentYear = todaysDate.getFullYear()
   return (
     <footer className={footerClasses}>
       <div className={classes.container}>
@@ -43,14 +45,7 @@ export default function Footer(props) {
           </List>
         </div>
         <div className={classes.right}>
-          <Favorite className={classes.icon} /> by{" "}
-          <a
-            href="https://www.creative-tim.com?ref=njsmk-footer"
-            className={aClasses}
-            target="_blank"
-          >
-            Template Love to Tim
-          </a>
+          &copy; Copyright {currentYear}, Garden Steward
         </div>
       </div>
     </footer>

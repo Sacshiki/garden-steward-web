@@ -74,8 +74,10 @@ export default function ResetPassword(props) {
       console.log("Your user's password has been reset.", response);
     })
     .catch(error => {
-      console.log('An error occurred:', error.response);
-      setError('An error occurred:',error.response)
+      if (error) {
+        console.log('An error occurred:', error.response);
+        setError('An error occurred:',error.response)
+      }
     });
   }
 

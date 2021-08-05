@@ -3,6 +3,7 @@
 
 install:
 	yarn install
-
+nvm :
+	. ${NVM_DIR}/nvm.sh && nvm use 13
 run:
 	yarn dev

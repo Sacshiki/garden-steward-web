@@ -64,7 +64,7 @@ export default function ResetPassword(props) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ code, password: pass, passwordConfirmation: passConf })
     };
-    fetch(`${process.env.STRAPI_URL}/auth/reset-password`, requestOptions)
+    fetch(`${process.env.NEXT_PUBLIC_STRAPI_URL}/auth/reset-password`, requestOptions)
     .then(response => {
       if (response.status != "200") {
         setError(`There appears to have been an issue. Has your token expired? Error code ${response.status}`)

@@ -24,7 +24,7 @@ const useStyles = makeStyles(styles);
 const Garden = (props) => {
   const router = useRouter()
   const { data, error } = useSwr(
-    router.query.slug ? `${process.env.STRAPI_URL}/garden?slug=${router.query.slug}` : null,
+    router.query.slug ? `${process.env.NEXT_PUBLIC_STRAPI_URL}/garden?slug=${router.query.slug}` : null,
     fetcher
   )
   const classes = useStyles();
@@ -38,7 +38,7 @@ const Garden = (props) => {
   } else {
      garden = data[0]
   }
-  console.log("data loading: ", data[0], router.query.slug, `${process.env.STRAPI_URL}/garden?slug=${router.query.slug}`)
+  console.log("data loading: ", data[0], router.query.slug, `${process.env.NEXT_PUBLIC_STRAPI_URL}/garden?slug=${router.query.slug}`)
   
   return (
     <div>

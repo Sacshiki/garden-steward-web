@@ -10,6 +10,7 @@ module.exports = withPlugins([[withSass], [withImages]], {
     return config;
   },
   env:{
-    STRAPI_URL:process.env.STRAPI_URL
+    NEXT_PUBLIC_STRAPI_URL:process.env.STRAPI_URL,
+    NEXTAUTH_URL:process.env.NEXTAUTH_URL
   }
 });

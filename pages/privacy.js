@@ -10,7 +10,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Header from "components/Header/Header.js";
 import Footer from "components/Footer/Footer.js";
 
-import styles from "assets/jss/nextjs-material-kit/pages/landingPage.js";
+import styles from "/assets/jss/nextjs-material-kit/pages/landingPage.js";
 
 // Sections for this page
 import PrivacySection from "pages-sections/Misc-Sections/PrivacySection.js";
@@ -23,7 +23,7 @@ export default function LandingPage(props) {
   return (
     <div>
       <Header
-        color="transparent"
+        color="black"
         brand="Garden Steward"
         // rightLinks={<HeaderLinks />}
         fixed
@@ -33,7 +33,7 @@ export default function LandingPage(props) {
         }}
         {...rest}
       />
-      <div className={classNames(classes.main, classes.mainRaised)}>
+      <div className={classNames(classes.main, classes.mainRaised, classes.paddedTop)}>
         <div className={classes.container}>
           <PrivacySection />
         </div>

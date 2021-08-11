@@ -4,14 +4,18 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import { useRouter } from 'next/router'
 // core components
-import Header from "components/Header/Header.js";
-import Footer from "components/Footer/Footer.js";
-import GridContainer from "components/Grid/GridContainer.js";
-import GridItem from "components/Grid/GridItem.js";
-import Button from "components/CustomButtons/Button.js";
-import HeaderLinks from "components/Header/HeaderLinks.js";
-import styles from "assets/jss/nextjs-material-kit/pages/landingPage.js";
-import Parallax from "components/Parallax/Parallax.js";
+import Header from "../../components/Header/Header.js";
+import Footer from "../../components/Footer/Footer.js";
+import WaiverAdmin from "../../components/Waiver/WaiverAdmin.js";
+import GardenerAdmin from "../../components/Gardener/GardenerAdmin";
+import GridContainer from "../../components/Theme/Grid/GridContainer.js";
+import GridItem from "../../components/Theme/Grid/GridItem.js";
+import Button from "../../components/Theme/CustomButtons/Button.js";
+import HeaderLinks from "../../components/Header/HeaderLinks.js";
+import styles from "../../assets/jss/nextjs-material-kit/pages/landingPage.js";
+import Parallax from "../../components/Theme/Parallax/Parallax.js";
+import CustomInput from "../../components/Theme/CustomInput/CustomInput.js";
+import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 
 const fetcher = (url) => fetch(url).then((res) => res.json())
 import useSwr from 'swr'
@@ -20,25 +24,32 @@ const dashboardRoutes = [];
 
 const useStyles = makeStyles(styles);
 
-
 const GardenAdmin = (props) => {
   const router = useRouter()
+  const classes = useStyles()
+
+  const handleChange = () => {c=> {
+    console.log("changed: ", c)
+  }}
+  const saveGarden = () => {
+    console.log('saving')
+  }
   const { data, error } = useSwr(
     router.query.gId ? `${process.env.NEXT_PUBLIC_STRAPI_URL}/garden/${router.query.gId}` : null,
     fetcher
   )
-  const classes = useStyles();
+    console.log(data, `${process.env.NEXT_PUBLIC_STRAPI_URL}/garden/${router.query.gId}`)
   const { ...rest } = props;
   if (!data) return <div>Loading...</div>
   let garden
-  if (!data.length){
+  if (!data){
       garden = {
           title: "Garden Steward"
       }
   } else {
-     garden = data[0]
+     garden = data
   }
-//   console.log("data loading: ", data[0], router.query.slug, `${process.env.NEXT_PUBLIC_STRAPI_URL}/garden?slug=${router.query.slug}`)
+  console.log("data loading: ", garden)
   
   return (
     <div>
@@ -54,18 +65,31 @@ const GardenAdmin = (props) => {
         }}
         {...rest}
       />
-      <Parallax filter responsive image={require("assets/img/bee-flower-gg.jpg")}>
+      <Parallax filter responsive image={require("../../assets/img/bee-flower-gg.jpg")}>
         <div className={classes.container}>
           <GridContainer>
             <GridItem xs={12} sm={12} md={6}>
               <h1 className={classes.title}>{garden.title}</h1>
-              <h4>
-                {garden.blurb}
-              </h4>
-              <br />
-              <h4>Currently {garden.title} is looking for more volunteers! Are you interested? We organize through the Garden Steward app, so please take a moment and get started with the app from the links below. Once installed you're able to scan the QR code located at the garden to learn how to help!</h4>
-              <a target="_blank" href='https://play.google.com/store/apps/details?id=com.sacshiki.gardenSteward&utm_source=steward-pages&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'>
-                <img alt='Get it on Google Play' className={classes.playButton} src={require("assets/img/google-play-badge.png")}/></a>
+              <TextareaAutosize aria-label="Garden Blurb" minrows={3} style={{width:500}} placeholder={`${garden.title} needs a blurb!`}
+                      labelText="Your Garden Blurb"
+                      name="blurb"
+                      id="blurb"
+                      value={garden.blurb}
+                      onChange={handleChange}
+                      formControlProps={{
+                        fullWidth: true
+                      }}
+                    />
+                  <br />
+                  <Button
+                    onClick={saveGarden}
+                    color="secondary" 
+                    size="sm">
+                    Submit
+                  </Button>
+
+                  <WaiverAdmin waiver={garden.waiver}/>
+                  <GardenerAdmin users={garden.leaders} title="Garden Leaders"/>
             </GridItem>
           </GridContainer>
         </div>

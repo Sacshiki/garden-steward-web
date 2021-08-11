@@ -8,25 +8,25 @@ import { makeStyles } from "@material-ui/core/styles";
 // @material-ui/icons
 
 // core components
-import styles from "assets/jss/nextjs-material-kit/components/cardBodyStyle.js";
+import styles from "../../../assets/jss/nextjs-material-kit/components/cardFooterStyle.js";
 
 const useStyles = makeStyles(styles);
 
-export default function CardBody(props) {
+export default function CardFooter(props) {
   const classes = useStyles();
   const { className, children, ...rest } = props;
-  const cardBodyClasses = classNames({
-    [classes.cardBody]: true,
+  const cardFooterClasses = classNames({
+    [classes.cardFooter]: true,
     [className]: className !== undefined
   });
   return (
-    <div className={cardBodyClasses} {...rest}>
+    <div className={cardFooterClasses} {...rest}>
       {children}
     </div>
   );
 }
 
-CardBody.propTypes = {
+CardFooter.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node
 };

@@ -6,11 +6,11 @@ import { makeStyles } from "@material-ui/core/styles";
 import EmojiNatureIcon from '@material-ui/icons/EmojiNature';
 import AccessibilityNewIcon from '@material-ui/icons/AccessibilityNew';
 // core components
-import GridContainer from "components/Grid/GridContainer.js";
-import GridItem from "components/Grid/GridItem.js";
-import InfoArea from "components/InfoArea/InfoArea.js";
-
-import styles from "assets/jss/nextjs-material-kit/pages/landingPageSections/productStyle.js";
+import GridContainer from "../../components/Theme/Grid/GridContainer.js";
+import GridItem from "../../components/Theme/Grid/GridItem.js";
+import InfoArea from "../../components/Theme/InfoArea/InfoArea.js";
+import Image from 'next/image'
+import styles from "../../assets/jss/nextjs-material-kit/pages/landingPageSections/productStyle.js";
 
 const useStyles = makeStyles(styles);
 
@@ -51,7 +51,7 @@ export default function ProductSection() {
 
         </GridItem>
         <GridItem xs={12} sm={12} md={4}>
-            <img src={require("assets/img/gspixel1x.png")}></img>
+            <Image layout='intrinsic' width={250} height={500} src={require("../../assets/img/gspixel1x.png")} />
         </GridItem>
       </GridContainer>
       <div>

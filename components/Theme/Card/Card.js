@@ -8,29 +8,29 @@ import { makeStyles } from "@material-ui/core/styles";
 // @material-ui/icons
 
 // core components
-import styles from "assets/jss/nextjs-material-kit/components/cardHeaderStyle.js";
+import styles from "../../../assets/jss/nextjs-material-kit/components/cardStyle.js";
 
 const useStyles = makeStyles(styles);
 
-export default function CardHeader(props) {
+export default function Card(props) {
   const classes = useStyles();
-  const { className, children, color, plain, ...rest } = props;
-  const cardHeaderClasses = classNames({
-    [classes.cardHeader]: true,
-    [classes[color + "CardHeader"]]: color,
-    [classes.cardHeaderPlain]: plain,
+  const { className, children, plain, carousel, ...rest } = props;
+  const cardClasses = classNames({
+    [classes.card]: true,
+    [classes.cardPlain]: plain,
+    [classes.cardCarousel]: carousel,
     [className]: className !== undefined
   });
   return (
-    <div className={cardHeaderClasses} {...rest}>
+    <div className={cardClasses} {...rest}>
       {children}
     </div>
   );
 }
 
-CardHeader.propTypes = {
+Card.propTypes = {
   className: PropTypes.string,
-  color: PropTypes.oneOf(["warning", "success", "danger", "info", "primary"]),
   plain: PropTypes.bool,
+  carousel: PropTypes.bool,
   children: PropTypes.node
 };

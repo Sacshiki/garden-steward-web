@@ -11,14 +11,14 @@ import Footer from "components/Footer/Footer.js";
 import { useRouter } from 'next/router'
 import GridContainer from "components/Grid/GridContainer.js";
 import GridItem from "components/Grid/GridItem.js";
-import Card from "components/Card/Card.js";
 import Button from "../components/CustomButtons/Button";
-import CardBody from "components/Card/CardBody.js";
-import CardFooter from "components/Card/CardFooter.js";
+import Card from "components/Theme/Card/Card.js";
+import CardBody from "components/Theme/Card/CardBody.js";
+import CardFooter from "components/Theme/Card/CardFooter.js";
 import {InputAdornment } from '@material-ui/core';
 import CustomInput from "components/CustomInput/CustomInput.js";
 
-import styles from "assets/jss/nextjs-material-kit/pages/componentsSections/loginStyle.js";
+import styles from "/assets/jss/nextjs-material-kit/pages/componentsSections/loginStyle.js";
 
 const useStyles = makeStyles(styles);
 

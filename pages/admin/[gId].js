@@ -89,7 +89,7 @@ const GardenAdmin = (props) => {
                   </Button>
 
                   <WaiverAdmin waiver={garden.waiver}/>
-                  <GardenerAdmin users={garden.leaders} title="Garden Leaders"/>
+                  <GardenerAdmin garden={garden} title="Gardeners"/>
             </GridItem>
           </GridContainer>
         </div>

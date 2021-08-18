@@ -33,7 +33,7 @@ export default function GardenerAdmin(props) {
             <Info>
             {garden.users.map(u=> (
               <>
-              <p className={classes.description}><strong>Name: </strong> {u.firstName} {u.lastName}</p>
+              <p className={classes.description}><strong>Name: a</strong> {u.firstName} {u.lastName}</p>
               <p className={classes.description}>{u.bio}</p>
               <p className={classes.description}><strong>Registered: </strong>{u.createdAt}</p>
               <Divider />

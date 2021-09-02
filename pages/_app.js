@@ -16,6 +16,7 @@
 
 */
 import React from "react";
+import '../components/Tasks/Tasks.scss'
 import { Provider } from 'next-auth/client'
 
 function MyApp({ Component, pageProps }) {

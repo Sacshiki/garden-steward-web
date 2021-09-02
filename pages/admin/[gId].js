@@ -8,6 +8,7 @@ import Header from "../../components/Header/Header.js";
 import Footer from "../../components/Footer/Footer.js";
 import WaiverAdmin from "../../components/Waiver/WaiverAdmin.js";
 import GardenerAdmin from "../../components/Gardener/GardenerAdmin";
+import TasksAdmin from "../../components/Tasks/TasksAdmin";
 import GridContainer from "../../components/Theme/Grid/GridContainer.js";
 import GridItem from "../../components/Theme/Grid/GridItem.js";
 import Button from "../../components/Theme/CustomButtons/Button.js";
@@ -89,11 +90,17 @@ const GardenAdmin = (props) => {
                   </Button>
 
                   <WaiverAdmin waiver={garden.waiver}/>
-                  <GardenerAdmin garden={garden} title="Gardeners"/>
             </GridItem>
           </GridContainer>
         </div>
       </Parallax>
+      <div className={classNames(classes.main, classes.mainRaised)}>
+        <div className={classes.container}>
+        <GardenerAdmin garden={garden} title="Gardeners"/>
+                  <TasksAdmin garden={garden} title="Tasks"/>
+          </div>
+      </div>
+
       <Footer />
     </div>
   )

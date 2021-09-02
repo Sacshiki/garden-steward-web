@@ -8,34 +8,44 @@ import Info from "../Typography/Info.js";
 import Clearfix from "../Theme/Clearfix/Clearfix";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
-import EmojiPeople from '@material-ui/icons/EmojiPeople';
+import ListAltIcon from '@material-ui/icons/ListAlt';
 import Divider from "@material-ui/core/Divider";
 
 import styles from "../../assets/jss/nextjs-material-kit/pages/componentsSections/typographyStyle.js";
 
 const useStyles = makeStyles(styles);
 
-export default function GardenerAdmin(props) {
+export default function TasksAdmin(props) {
   const classes = useStyles();
   const { title, garden } = props;
-  console.log(garden.users)
+  console.log(garden.recurringtasks)
+
+  const getFrequency = (task) => {
+      if (task.always_available) {
+          return "Always"
+      } else {
+          return task.frequency
+      }
+  }
   return (
-    <Card>
+    <Card variant="outlined">
 
       <CardBody>
         <div className={classes.typo}>
           <div className={classes.note}>
-            <EmojiPeople style={{textAlign: 'center'}} fontSize="large" />
+            <ListAltIcon style={{textAlign: 'center'}} fontSize="large" />
             <Clearfix />
             {title}
           </div>
-        {garden.users.length ? 
+        {garden.recurringtasks.length ? 
             <Info>
-            {garden.users.map(u=> (
-              <div key={u.id}>
-              <p className={classes.description}><strong>Name: </strong> {u.firstName} {u.lastName}</p>
-              <p className={classes.description}>{u.bio}</p>
-              <p className={classes.description}><strong>Registered: </strong>{u.createdAt}</p>
+            {garden.recurringtasks.map(t=> (
+              <div key={t.id} className="taskLink" >
+                <a href={"task/"+t.id}>
+                <p className={classes.description}><strong>Title: </strong> {t.title}</p>
+                <p className={classes.description}>{t.overview}</p>
+                <p className={classes.description}><strong>Repeat: </strong>{getFrequency(t)}</p>
+              </a>
               <Divider />
               </div>
             ))}
@@ -52,10 +62,10 @@ export default function GardenerAdmin(props) {
   );
 }
 
-GardenerAdmin.defaultProps = {
+TasksAdmin.defaultProps = {
   iconColor: "gray"
 };
 
-GardenerAdmin.propTypes = {
+TasksAdmin.propTypes = {
   vertical: PropTypes.bool
 };

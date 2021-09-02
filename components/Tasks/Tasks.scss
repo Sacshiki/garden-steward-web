@@ -1,0 +1,9 @@
+@import '../../assets/scss/global.scss';
+
+.taskLink {
+    padding: 5px;
+    &:hover {
+        background: #fef0f0;
+    }
+
+}

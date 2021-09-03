@@ -54,7 +54,7 @@ const Plant = (props) => {
         }}
         {...rest}
       />
-      <Parallax filter responsive image="/assets/img/bee-flower-gg.jpg">
+      <Parallax filter responsive image="../../assets/img/bee-flower-gg.jpg">
         <div className={classes.container}>
           <GridContainer>
             <GridItem xs={12} sm={12} md={6}>

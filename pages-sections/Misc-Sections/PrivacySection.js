@@ -3,10 +3,10 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 
 // core components
-import GridContainer from "components/Grid/GridContainer.js";
-import GridItem from "components/Grid/GridItem.js";
+import GridContainer from "../../components/Theme/Grid/GridContainer.js";
+import GridItem from "../../components/Theme/Grid/GridItem.js";
 
-import styles from "/assets/jss/nextjs-material-kit/pages/privacyPageSections/privacyStyle.js";
+import styles from "../../assets/jss/nextjs-material-kit/pages/privacyPageSections/privacyStyle.js";
 
 const useStyles = makeStyles(styles);
 

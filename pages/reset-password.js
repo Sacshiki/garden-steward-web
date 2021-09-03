@@ -4,21 +4,21 @@ import classNames from "classnames";
 // react components for routing our app without refresh
 import { makeStyles } from "@material-ui/core/styles";
 import Icon from "@material-ui/core/Icon";
-import Danger from "components/Typography/Danger.js";
-import Header from "components/Header/Header.js";
-import HeaderLinks from "components/Header/HeaderLinks.js";
-import Footer from "components/Footer/Footer.js";
+import Danger from "../components/Typography/Danger.js";
+import Header from "../components/Header/Header.js";
+import HeaderLinks from "../components/Header/HeaderLinks.js";
+import Footer from "../components/Footer/Footer.js";
 import { useRouter } from 'next/router'
-import GridContainer from "components/Grid/GridContainer.js";
-import GridItem from "components/Grid/GridItem.js";
-import Button from "../components/CustomButtons/Button";
-import Card from "components/Theme/Card/Card.js";
-import CardBody from "components/Theme/Card/CardBody.js";
-import CardFooter from "components/Theme/Card/CardFooter.js";
+import GridContainer from "../components/Theme/Grid/GridContainer.js";
+import GridItem from "../components/Theme/Grid/GridItem.js";
+import Button from "../components/Theme/CustomButtons/Button";
+import Card from "../components/Theme/Card/Card.js";
+import CardBody from "../components/Theme/Card/CardBody.js";
+import CardFooter from "../components/Theme/Card/CardFooter.js";
 import {InputAdornment } from '@material-ui/core';
-import CustomInput from "components/CustomInput/CustomInput.js";
+import CustomInput from "../components/Theme/CustomInput/CustomInput.js";
 
-import styles from "/assets/jss/nextjs-material-kit/pages/componentsSections/loginStyle.js";
+import styles from "../assets/jss/nextjs-material-kit/pages/componentsSections/loginStyle.js";
 
 const useStyles = makeStyles(styles);
 

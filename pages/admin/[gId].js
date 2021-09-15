@@ -1,3 +1,4 @@
+import React from "react";
 import classNames from "classnames";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
@@ -17,9 +18,9 @@ import styles from "../../assets/jss/nextjs-material-kit/pages/landingPage.js";
 import Parallax from "../../components/Theme/Parallax/Parallax.js";
 import CustomInput from "../../components/Theme/CustomInput/CustomInput.js";
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
-
-const fetcher = (url) => fetch(url).then((res) => res.json())
-import useSwr from 'swr'
+import { useSession, signIn, signOut } from "next-auth/client"
+import {getGarden, updateGarden} from "../../controllers/GardenController"
+import { SettingsSystemDaydreamRounded } from "@material-ui/icons";
 
 const dashboardRoutes = [];
 
@@ -28,28 +29,33 @@ const useStyles = makeStyles(styles);
 const GardenAdmin = (props) => {
   const router = useRouter()
   const classes = useStyles()
+  const [session] = useSession()
+  const [loading, setLoading] = React.useState(false);
+  const [blurb, setBlurb] = React.useState(false);
+  const [garden, setGarden] = React.useState({title: "Garden Steward"});
 
-  const handleChange = () => {c=> {
-    console.log("changed: ", c)
-  }}
+  const handleChange = e => {
+
+    console.log("changed: ", e.target.value)
+    setBlurb(e.target.value)
+
+  }
+
   const saveGarden = () => {
     console.log('saving')
+    updateGarden(session,garden.id,{blurb:blurb})
   }
-  const { data, error } = useSwr(
-    router.query.gId ? `${process.env.NEXT_PUBLIC_STRAPI_URL}/garden/${router.query.gId}` : null,
-    fetcher
-  )
-    console.log(data, `${process.env.NEXT_PUBLIC_STRAPI_URL}/garden/${router.query.gId}`)
-  const { ...rest } = props;
-  if (!data) return <div>Loading...</div>
-  let garden
-  if (!data){
-      garden = {
-          title: "Garden Steward"
+
+  if (!garden || !garden.id ) {
+    getGarden(session, router.query.gId).then(g => {
+      if (g && g.id) {
+        setGarden(g)
+        setBlurb(g.blurb)
       }
-  } else {
-     garden = data
+    })
+    return <div>Loading...</div>
   }
+  
   console.log("data loading: ", garden)
   
   return (
@@ -64,7 +70,6 @@ const GardenAdmin = (props) => {
           height: 400,
           color: "white"
         }}
-        {...rest}
       />
       <Parallax filter responsive image={require("../../assets/img/bee-flower-gg.jpg")}>
         <div className={classes.container}>
@@ -75,7 +80,7 @@ const GardenAdmin = (props) => {
                       labelText="Your Garden Blurb"
                       name="blurb"
                       id="blurb"
-                      value={garden.blurb}
+                      value={blurb}
                       onChange={handleChange}
                       formControlProps={{
                         fullWidth: true
@@ -96,7 +101,7 @@ const GardenAdmin = (props) => {
       </Parallax>
       <div className={classNames(classes.main, classes.mainRaised)}>
         <div className={classes.container}>
-        <GardenerAdmin garden={garden} title="Gardeners"/>
+        <GardenerAdmin garden={garden} title="Gardeners" session={session} />
                   <TasksAdmin garden={garden} title="Tasks"/>
           </div>
       </div>

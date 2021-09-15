@@ -38,6 +38,10 @@ const typographyStyle = {
   marginLeft: {
     marginLeft: "auto !important"
   },
+  backdrop: {
+    zIndex: 12,
+    color: '#fff',
+  },
   ...imagesStyles
 };
 

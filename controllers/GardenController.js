@@ -1,6 +1,5 @@
 
 export const getGarden = async(session,gardenId) => {
-    console.log("get garden: ", session, gardenId)
     if (session && session.jwt) {
         const requestOptions = {
             method: 'GET',

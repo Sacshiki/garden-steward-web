@@ -43,7 +43,10 @@ const GardenAdmin = (props) => {
 
   const saveGarden = () => {
     console.log('saving')
-    updateGarden(session,garden.id,{blurb:blurb})
+    setLoading(true)
+    updateGarden(session,garden.id,{blurb:blurb}).then(res=>{
+      setLoading(false)
+    })
   }
 
   if (!garden || !garden.id ) {

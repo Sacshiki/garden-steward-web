@@ -53,6 +53,7 @@ const options = {
         token.username = `${user.user.firstName} ${user.user.lastName}`;
         token.gardens = user.user.gardens;
         token.email = user.user.email;
+        token.role = user.user.role;
       }
       return Promise.resolve(token);
     },

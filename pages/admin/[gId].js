@@ -51,6 +51,7 @@ const GardenAdmin = (props) => {
 
   if (!garden || !garden.id ) {
     getGarden(session, router.query.gId).then(g => {
+      console.log("received garden: ", g)
       if (g && g.id) {
         setGarden(g)
         setBlurb(g.blurb)

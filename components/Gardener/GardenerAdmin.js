@@ -12,7 +12,7 @@ import Clearfix from "../Theme/Clearfix/Clearfix";
 import { makeStyles } from "@material-ui/core/styles";
 import EmojiPeople from '@material-ui/icons/EmojiPeople';
 import Divider from "@material-ui/core/Divider";
-import {updateGarden} from "../../controllers/GardenController"
+import {updateGarden, getGardenTasks} from "../../controllers/GardenController"
 import styles from "../../assets/jss/nextjs-material-kit/pages/componentsSections/typographyStyle.js";
 import { Button } from "@material-ui/core";
 
@@ -23,6 +23,7 @@ export default function GardenerAdmin(props) {
   const { title, garden, session } = props;
   const [loading, setLoading] = React.useState(false);
   const [gardenState, setGardenState] = React.useState(garden)
+  const [gardenTasks, setGardenTasks] = React.useState([])
 
   const handleClose = () => {
     setLoading(false);
@@ -49,11 +50,26 @@ export default function GardenerAdmin(props) {
     })
   }
 
-  gardenState.leaders.map((l)=> {
-    let user = gardenState.users.find(u=>l.id == u.id)
-    if (user) {
-      user.leader = true
+  if (!gardenTasks.length) {
+    setLoading(true)
+    setGardenTasks([1]) // or else infinite loop
+    getGardenTasks(session,gardenState.id).then(res=>{
+      console.log("res: ",res)
+      setGardenTasks(res)
+      setLoading(false)
+    })
+  }
+  
+  gardenState.users.map((u)=> {
+    let leader = gardenState.leaders.find(l=>l.id == u.id)
+    if (leader) {
+      u.leader = true
     }
+    console.log("garden tasks:", gardenTasks)
+    let userTasks = gardenTasks.filter(t=> t.user && t.user.id == u.id)
+    let completeTasks = userTasks.filter(t=>t.status === "FINISHED")
+    u.tasks = userTasks
+    u.completeTasks = completeTasks
   })
   
   return (
@@ -77,6 +93,8 @@ export default function GardenerAdmin(props) {
               <p className={classes.description}><strong>Name: </strong> {u.firstName} {u.lastName}</p>
               <p className={classes.description}>{u.bio}</p>
               <p className={classes.description}><strong>Registered: </strong>{u.createdAt}</p>
+              <p className={classes.description}><strong>Total Tasks Accepted: </strong>{u.tasks.length}</p>
+              <p className={classes.description}><strong>Total Tasks Completed: </strong>{u.completeTasks.length}</p>
               {u.leader ? 
                 <>
                   <p className={classes.description}><strong>Garden Leader!</strong></p>
@@ -84,7 +102,6 @@ export default function GardenerAdmin(props) {
                 </>
                 :
                 <Button color="primary" size="lg" onClick={()=>leaderAction(u.id)} data-id={u.id}>Make Leader</Button>
-                
               }
               
               <Divider />

@@ -41,11 +41,11 @@ export default function TasksAdmin(props) {
             <Info>
             {garden.recurringtasks.map(t=> (
               <div key={t.id} className="taskLink" >
-                <a href={"task/"+t.id}>
+                {/* <a href={"task/"+t.id}> */}
                 <p className={classes.description}><strong>Title: </strong> {t.title}</p>
                 <p className={classes.description}>{t.overview}</p>
                 <p className={classes.description}><strong>Repeat: </strong>{getFrequency(t)}</p>
-              </a>
+              {/* </a> */}
               <Divider />
               </div>
             ))}
@@ -63,7 +63,7 @@ export default function TasksAdmin(props) {
 }
 
 TasksAdmin.defaultProps = {
-  iconColor: "gray"
+  icolor: "gray"
 };
 
 TasksAdmin.propTypes = {

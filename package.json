@@ -34,7 +34,7 @@
     "js-cookie": "^3.0.0",
     "moment": "2.25.3",
     "next": "^10",
-    "next-auth": "^3.27.3",
+    "next-auth": "^4.3.2",
     "next-compose-plugins": "2.2.0",
     "next-images": "^1.8.1",
     "nextjs-redirect": "2.0.2",
